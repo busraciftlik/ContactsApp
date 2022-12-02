@@ -1,20 +1,19 @@
 package com.busraciftlik.contacts;
 
+import com.busraciftlik.contacts.enums.Type;
 import com.busraciftlik.contacts.model.Contacts;
 import com.busraciftlik.contacts.model.Person;
+import com.busraciftlik.contacts.model.PhoneNumber;
+import com.busraciftlik.contacts.service.ContactsService;
+
+import java.util.List;
+import java.util.Scanner;
 
 public class ContactsAppDriver {
     public static void main(String[] args) {
-        Person person = new Person("Büşra", "Çiftlik");
-        Person person1 = new Person("Zehra", "Yılmaz");
-
-        Contacts contacts = new Contacts();
-        contacts.addPerson(person);
-        contacts.addPerson(person1);
-        contacts.addPerson(person);
-
-        contacts.findAll();
-        contacts.deletePerson(person);
+        ContactsService contactsService = new ContactsService();
+        contactsService.start();
 
     }
+
 }

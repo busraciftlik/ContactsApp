@@ -5,4 +5,9 @@ public class Address {
     private String province;
     private String district;
 
+    public Address(String country, String province, String district) {
+        this.country = country;
+        this.province = province;
+        this.district = district;
+    }
 }

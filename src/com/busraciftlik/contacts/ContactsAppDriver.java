@@ -12,7 +12,8 @@ import java.util.Scanner;
 public class ContactsAppDriver {
     public static void main(String[] args) {
         ContactsService contactsService = new ContactsService();
-        contactsService.start();
+        ContactsApp contactsApp = new ContactsApp(contactsService);
+        contactsApp.start();
 
     }
 

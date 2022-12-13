@@ -2,6 +2,8 @@ package com.busraciftlik.contacts.model;
 
 import com.busraciftlik.contacts.enums.Type;
 
+import java.util.Objects;
+
 public class PhoneNumber {
     private Type type;
 
@@ -26,5 +28,18 @@ public class PhoneNumber {
                 "type=" + type +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PhoneNumber number = (PhoneNumber) o;
+        return type == number.type && phoneNumber.equals(number.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, phoneNumber);
     }
 }

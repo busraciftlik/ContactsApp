@@ -13,17 +13,13 @@ public class Contacts {
 
     public Person addPerson(Person newPerson) {
         for(Person person : contacts){
-            Set<PhoneNumber> phoneNumbers = person.getPhoneNumbers();
-            for(PhoneNumber phoneNumber : newPerson.getPhoneNumbers()){
-                if (phoneNumbers.contains(phoneNumber)) {
-                    throw new PersonAlreadyExistsException();
-                }
-            }
+           if( person.getPhoneNumber().equals(newPerson.getPhoneNumber())){
+               throw new PersonAlreadyExistsException();
+           }
         }
         contacts.add(newPerson);
         return newPerson;
     }
-
 
     public Person deleteById(int id) {
         for (Person person : contacts) {
@@ -52,7 +48,7 @@ public class Contacts {
 
     public Person findByPhoneNumber(String phoneNumber) {
         for (Person person : contacts) {
-            if (person.getPhoneNumbers().equals(phoneNumber)) {
+            if (person.getPhoneNumber().equals(phoneNumber)) {
                 return person;
             }
         }

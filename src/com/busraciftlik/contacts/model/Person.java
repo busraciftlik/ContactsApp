@@ -13,22 +13,19 @@ public class Person {
     private int id = idCounter++;
     private String firstName;
     private String lastName;
-    private Set<PhoneNumber> phoneNumbers;
+    private PhoneNumber phoneNumber;
     //private String mail;
-    private ArrayList<Address> addresses;
 
-    public Person(String firstName, String lastName) {
+    public Person(String firstName, String lastName, PhoneNumber phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumbers = new HashSet<>();
-        this.addresses = new ArrayList<>();
-
+        this.phoneNumber = phoneNumber;
     }
 
 
 
     public PhoneNumber addNewNumber(PhoneNumber newNumber) {
-        phoneNumbers.add(newNumber);
+        if(phoneNumber.equals(newNumber));
         return newNumber;
     }
 
@@ -36,8 +33,8 @@ public class Person {
         return firstName;
     }
 
-    public Set<PhoneNumber> getPhoneNumbers() {
-        return phoneNumbers;
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getLastName() {
@@ -53,7 +50,7 @@ public class Person {
                 "id='" + id + '\'' +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phoneNumbers=" + phoneNumbers +
+                ", phoneNumbers=" + phoneNumber +
                 '}';
     }
 }

@@ -16,7 +16,7 @@ public class ContactsApp {
         this.service = service;
     }
     public void start() {
-        String message = "Please select the option you want to do: \n 1.Add new person \n 2.List all contacts \n 3.Delete by name \n 4.Find by name \n 5.Exit \n >";
+        String message = "Please select the option you want to do: \n 1.Add new person \n 2.List all contacts \n 3.Delete by id \n 4.Find by name \n 5.Exit \n >";
 
         while (true) {
             System.out.print(message);
@@ -56,7 +56,7 @@ public class ContactsApp {
         String type = scanner.next();
         Type typeEnum = type.equalsIgnoreCase("mobile") ? Type.MOBILE : Type.HOME;
         PhoneNumber phoneNumber1 = new PhoneNumber(phoneNumber, typeEnum);
-        Person person = new Person(firstName, lastName);
+        Person person = new Person(firstName, lastName,phoneNumber1);
         person.addNewNumber(phoneNumber1);
         service.addNewPerson(person);
 

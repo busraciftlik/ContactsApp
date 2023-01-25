@@ -59,8 +59,35 @@ public class ContactsApp {
         Person person = new Person(firstName, lastName,phoneNumber1);
         person.addNewNumber(phoneNumber1);
         service.addNewPerson(person);
+        System.out.println(person.toXmlString());
+        test();
 
         // TODO: 28.11.2022 add phoneNumber
 
     }
+
+    public void test(){
+        String personXml = "<person><id>1</id><firstname>busra</firstname><lastname>ciftlik</lastname><phonenumber>05364897</phonenumber></person>";
+        String str = "<firstname>";
+        int beginIndex = personXml.indexOf(str)+str.length();
+        int endIndex = personXml.indexOf("</firstname>");
+        String firstName = personXml.substring(beginIndex, endIndex);
+        System.out.println(firstName);
+        str = "<lastname>";
+        beginIndex = personXml.indexOf(str)+str.length();
+        endIndex = personXml.indexOf("</lastname>");
+        String lastName = personXml.substring(beginIndex, endIndex);
+        System.out.println(lastName);
+        str = "<phonenumber>";
+        beginIndex = personXml.indexOf(str)+str.length();
+        endIndex = personXml.indexOf("</phonenumber>");
+        String phoneNumber = personXml.substring(beginIndex, endIndex);
+        System.out.println(phoneNumber);
+        PhoneNumber phoneNumber1 = new PhoneNumber(phoneNumber,Type.MOBILE);
+        Person person = new Person(firstName,lastName,phoneNumber1);
+        System.out.println(person.toString());
+
+
+    }
+
 }

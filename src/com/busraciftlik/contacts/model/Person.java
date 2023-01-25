@@ -23,9 +23,8 @@ public class Person {
     }
 
 
-
     public PhoneNumber addNewNumber(PhoneNumber newNumber) {
-        if(phoneNumber.equals(newNumber));
+        if (phoneNumber.equals(newNumber)) ;
         return newNumber;
     }
 
@@ -40,6 +39,7 @@ public class Person {
     public String getLastName() {
         return lastName;
     }
+
     public int getId() {
         return id;
     }
@@ -52,5 +52,14 @@ public class Person {
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumbers=" + phoneNumber +
                 '}';
+    }
+
+    public String toXmlString() {
+        return "<person>" +
+                "<id>"+id+"</id>" +
+                "<firstname>"+firstName+"</firstname>" +
+                "<lastname>"+lastName+"</lastname>" +
+                "<phonenumber>"+phoneNumber+"</phonenumber>" +
+                "</person>";
     }
 }

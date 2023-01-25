@@ -1,26 +1,28 @@
 package com.busraciftlik.contacts.model;
 
+import com.busraciftlik.contacts.dao.CrudApi;
 import com.busraciftlik.contacts.ex.ContactNotFoundException;
 import com.busraciftlik.contacts.ex.PersonAlreadyExistsException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
-public class Contacts {
+public class Contacts implements CrudApi {
     private ArrayList<Person> contacts = new ArrayList<Person>();
 
+    @Override
     public Person addPerson(Person newPerson) {
-        for(Person person : contacts){
-           if( person.getPhoneNumber().equals(newPerson.getPhoneNumber())){
-               throw new PersonAlreadyExistsException();
-           }
+        for (Person person : contacts) {
+            if (person.getPhoneNumber().equals(newPerson.getPhoneNumber())) {
+                throw new PersonAlreadyExistsException();
+            }
         }
         contacts.add(newPerson);
         return newPerson;
     }
 
+    @Override
     public Person deleteById(int id) {
         for (Person person : contacts) {
             if (person.getId() == id) {
@@ -31,11 +33,13 @@ public class Contacts {
         throw new ContactNotFoundException(id);
     }
 
+    @Override
     public List<Person> findAll() {
         return Collections.unmodifiableList(contacts);
 
     }
 
+    @Override
     public List<Person> findByName(String personName) {
         List<Person> people = new ArrayList<Person>();
         for (Person person : contacts) {

@@ -2,9 +2,10 @@ package com.busraciftlik.contacts.model;
 
 import com.busraciftlik.contacts.enums.Type;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class PhoneNumber {
+public class PhoneNumber implements Serializable {
     private Type type;
 
     private String phoneNumber;
@@ -12,14 +13,6 @@ public class PhoneNumber {
     public PhoneNumber(String phoneNumber, Type type) {
         this.phoneNumber = phoneNumber;
         this.type = type;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 
     @Override

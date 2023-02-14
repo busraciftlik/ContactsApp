@@ -2,11 +2,12 @@ package com.busraciftlik.contacts.model;
 
 import com.busraciftlik.contacts.enums.Type;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Person {
+public class Person implements Serializable {
 
     private static int idCounter = 1;
 
@@ -34,10 +35,6 @@ public class Person {
 
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public int getId() {

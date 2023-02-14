@@ -3,14 +3,17 @@ package com.busraciftlik.contacts.service;
 import com.busraciftlik.contacts.model.Contacts;
 import com.busraciftlik.contacts.model.Person;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class ContactsService {
-    private Contacts contacts = new Contacts();
+    private Contacts contacts ;
 
-    //public ContactsService(Contacts contacts){
-    //    this.contacts = contacts;
-    //}
+    public ContactsService(Contacts contacts){
+        this.contacts = contacts;
+    }
 
 
 
@@ -36,6 +39,17 @@ public class ContactsService {
 
     public Person addNewPerson(Person person) {
         return contacts.addPerson(person);
+    }
+
+    public void saveToHardDisk(){
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream("contact.txt");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(contacts);
+            objectOutputStream.close();
+        }catch (IOException exception){
+            exception.printStackTrace();
+        }
     }
 
 

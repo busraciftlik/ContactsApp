@@ -1,5 +1,7 @@
 package com.busraciftlik.contacts.enums;
 
-public enum Type {
+import java.io.Serializable;
+
+public enum Type implements Serializable {
     HOME,MOBILE,WORK
 }

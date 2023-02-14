@@ -4,11 +4,12 @@ import com.busraciftlik.contacts.dao.CrudApi;
 import com.busraciftlik.contacts.ex.ContactNotFoundException;
 import com.busraciftlik.contacts.ex.PersonAlreadyExistsException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Contacts implements CrudApi {
+public class Contacts implements CrudApi, Serializable {
     private ArrayList<Person> contacts = new ArrayList<Person>();
 
     @Override
@@ -50,12 +51,12 @@ public class Contacts implements CrudApi {
         return people;
     }
 
-    public Person findByPhoneNumber(String phoneNumber) {
-        for (Person person : contacts) {
-            if (person.getPhoneNumber().equals(phoneNumber)) {
-                return person;
-            }
-        }
-        throw new ContactNotFoundException();
-    }
+//    public Person findByPhoneNumber(String phoneNumber) {
+//        for (Person person : contacts) {
+//            if (person.getPhoneNumber().equals(phoneNumber)) {
+//                return person;
+//            }
+//        }
+//        throw new ContactNotFoundException();
+//    }
 }

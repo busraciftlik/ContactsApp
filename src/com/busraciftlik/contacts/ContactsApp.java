@@ -1,23 +1,26 @@
 package com.busraciftlik.contacts;
 
 import com.busraciftlik.contacts.enums.Type;
+import com.busraciftlik.contacts.model.Contacts;
 import com.busraciftlik.contacts.model.Person;
 import com.busraciftlik.contacts.model.PhoneNumber;
 import com.busraciftlik.contacts.service.ContactsService;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.List;
 import java.util.Scanner;
 
 public class ContactsApp {
-    private final ContactsService service;
+    private ContactsService service;
     private final Scanner scanner = new Scanner(System.in);
 
-    public ContactsApp(ContactsService service) {
-        this.service = service;
-    }
     public void start() {
         String message = "Please select the option you want to do: \n 1.Add new person \n 2.List all contacts \n 3.Delete by id \n 4.Find by name \n 5.Exit \n >";
 
+        initService();
         while (true) {
             System.out.print(message);
             int selection = scanner.nextInt();
@@ -33,10 +36,33 @@ public class ContactsApp {
                 byName.forEach(System.out::println);
 
             } else if (selection == 5) {
+                service.saveToHardDisk();
                 break;
             }
         }
     }
+
+    private void initService() {
+        Contacts contacts = null;
+        File file = new File("contact.txt");
+        if (file.exists()) {
+            System.out.println("A previously created contacts object was found on the hard disk, reading");
+            try {
+                FileInputStream fileInputStream = new FileInputStream("contact.txt");
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                contacts = (Contacts)objectInputStream.readObject();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("Contacts object not found, creating a new one");
+            contacts = new Contacts();
+        }
+        this.service = new ContactsService(contacts);
+    }
+
     private String readNameFromConsole(){
         System.out.println("Enter name:");
         return scanner.next();
@@ -60,7 +86,7 @@ public class ContactsApp {
         person.addNewNumber(phoneNumber1);
         service.addNewPerson(person);
         System.out.println(person.toXmlString());
-        test();
+        //test();
 
         // TODO: 28.11.2022 add phoneNumber
 

@@ -1,5 +1,7 @@
 package com.busraciftlik.contacts;
 
+import com.busraciftlik.contacts.dao.PersistDatabaseDao;
+import com.busraciftlik.contacts.dao.PersistHardDriveDao;
 import com.busraciftlik.contacts.enums.Type;
 import com.busraciftlik.contacts.model.Contacts;
 import com.busraciftlik.contacts.model.Person;
@@ -60,6 +62,8 @@ public class ContactsApp {
             System.out.println("Contacts object not found, creating a new one");
             contacts = new Contacts();
         }
+        //PersistDatabaseDao persistDatabaseDao = new PersistDatabaseDao();
+        //PersistHardDriveDao persistHardDriveDao = new PersistHardDriveDao();
         this.service = new ContactsService(contacts);
     }
 

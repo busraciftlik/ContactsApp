@@ -1,11 +1,8 @@
 package com.busraciftlik.contacts.model;
 
-import com.busraciftlik.contacts.enums.Type;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
 
 public class Person implements Serializable {
 
@@ -31,6 +28,10 @@ public class Person implements Serializable {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public PhoneNumber getPhoneNumber() {

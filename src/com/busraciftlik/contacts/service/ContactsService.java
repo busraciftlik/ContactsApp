@@ -1,7 +1,6 @@
 package com.busraciftlik.contacts.service;
 
 import com.busraciftlik.contacts.dao.CrudApi;
-import com.busraciftlik.contacts.model.Contacts;
 import com.busraciftlik.contacts.model.Person;
 
 import java.io.FileOutputStream;
@@ -10,25 +9,24 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class ContactsService {
-    private Contacts contacts ;
+    private CrudApi databaseDao;
 
-    public ContactsService(Contacts contacts){
-        this.contacts = contacts;
+    public ContactsService(CrudApi databaseDao){
+        this.databaseDao = databaseDao;
     }
-
 
 
     public List<Person> findByName(String name) {
-        return contacts.findByName(name);
+        return databaseDao.findByName(name);
     }
 
     public Person deleteById(int id) {
-        return contacts.deleteById(id);
+        return databaseDao.deleteById(id);
     }
 
     public void listAllContacts() {
 
-        List<Person> people = contacts.findAll();
+        List<Person> people = databaseDao.findAll();
         if (people.isEmpty()) {
             System.out.println("There is no contact in contact list");
         } else {
@@ -39,14 +37,14 @@ public class ContactsService {
     }
 
     public Person addNewPerson(Person person) {
-        return contacts.addPerson(person);
+        return databaseDao.addPerson(person);
     }
 
     public void saveToHardDisk(){
         try{
             FileOutputStream fileOutputStream = new FileOutputStream("contact.txt");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(contacts);
+            objectOutputStream.writeObject(databaseDao);
             objectOutputStream.close();
         }catch (IOException exception){
             exception.printStackTrace();

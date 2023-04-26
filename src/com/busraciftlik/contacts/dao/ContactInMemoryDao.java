@@ -1,15 +1,15 @@
-package com.busraciftlik.contacts.model;
+package com.busraciftlik.contacts.dao;
 
-import com.busraciftlik.contacts.dao.CrudApi;
 import com.busraciftlik.contacts.ex.ContactNotFoundException;
 import com.busraciftlik.contacts.ex.PersonAlreadyExistsException;
+import com.busraciftlik.contacts.model.Person;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Contacts implements CrudApi, Serializable {
+public class ContactInMemoryDao implements CrudApi, Serializable {
     private ArrayList<Person> contacts = new ArrayList<Person>();
 
     @Override

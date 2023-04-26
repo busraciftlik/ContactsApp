@@ -6,16 +6,14 @@ import com.busraciftlik.contacts.model.Person;
 import com.busraciftlik.contacts.model.PhoneNumber;
 
 import java.io.*;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class ContactsAppDriver {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 //        ContactsApp contactsApp = new ContactsApp();
 //        contactsApp.start();
 
-        // findAll();
         test1();
 
     }
@@ -29,8 +27,10 @@ public class ContactsAppDriver {
 
     public static void test1() {
         PersistDatabaseDao persistDatabaseDao = new PersistDatabaseDao();
-        int id = 5;
-        persistDatabaseDao.deleteById(id);
+       // int id = 5;
+        persistDatabaseDao.findByName("Ikram");
+        List<Person> all = persistDatabaseDao.findAll();
+        System.out.println(all);
 
     }
 

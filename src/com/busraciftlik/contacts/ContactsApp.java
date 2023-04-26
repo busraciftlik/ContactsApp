@@ -1,9 +1,7 @@
 package com.busraciftlik.contacts;
 
-import com.busraciftlik.contacts.dao.PersistDatabaseDao;
-import com.busraciftlik.contacts.dao.PersistHardDriveDao;
 import com.busraciftlik.contacts.enums.Type;
-import com.busraciftlik.contacts.model.Contacts;
+import com.busraciftlik.contacts.dao.ContactInMemoryDao;
 import com.busraciftlik.contacts.model.Person;
 import com.busraciftlik.contacts.model.PhoneNumber;
 import com.busraciftlik.contacts.service.ContactsService;
@@ -45,26 +43,26 @@ public class ContactsApp {
     }
 
     private void initService() {
-        Contacts contacts = null;
+        ContactInMemoryDao contactInMemoryDao = null;
         File file = new File("contact.txt");
         if (file.exists()) {
-            System.out.println("A previously created contacts object was found on the hard disk, reading");
+            System.out.println("A previously created contactInMemoryDao object was found on the hard disk, reading");
             try {
                 FileInputStream fileInputStream = new FileInputStream("contact.txt");
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                contacts = (Contacts)objectInputStream.readObject();
+                contactInMemoryDao = (ContactInMemoryDao)objectInputStream.readObject();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }else{
-            System.out.println("Contacts object not found, creating a new one");
-            contacts = new Contacts();
+            System.out.println("ContactInMemoryDao object not found, creating a new one");
+            contactInMemoryDao = new ContactInMemoryDao();
         }
         //PersistDatabaseDao persistDatabaseDao = new PersistDatabaseDao();
         //PersistHardDriveDao persistHardDriveDao = new PersistHardDriveDao();
-        this.service = new ContactsService(contacts);
+        this.service = new ContactsService(contactInMemoryDao);
     }
 
     private String readNameFromConsole(){
@@ -89,7 +87,7 @@ public class ContactsApp {
         Person person = new Person(firstName, lastName,phoneNumber1);
         person.addNewNumber(phoneNumber1);
         service.addNewPerson(person);
-        System.out.println(person.toXmlString());
+        //System.out.println(person.toXmlString());
         //test();
 
         // TODO: 28.11.2022 add phoneNumber

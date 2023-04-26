@@ -52,12 +52,12 @@ public class Person implements Serializable {
                 '}';
     }
 
-    public String toXmlString() {
-        return "<person>" +
-                "<id>"+id+"</id>" +
-                "<firstname>"+firstName+"</firstname>" +
-                "<lastname>"+lastName+"</lastname>" +
-                "<phonenumber>"+phoneNumber+"</phonenumber>" +
-                "</person>";
-    }
+//    public String toXmlString() {
+//        return "<person>" +
+//                "<id>"+id+"</id>" +
+//                "<firstname>"+firstName+"</firstname>" +
+//                "<lastname>"+lastName+"</lastname>" +
+//                "<phonenumber>"+phoneNumber+"</phonenumber>" +
+//                "</person>";
+//    }
 }
